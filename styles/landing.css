@@ -1,0 +1,179 @@
+/* ==========================
+   GLOBAL
+========================== */
+
+.block-container{
+
+    max-width:none !important;
+
+    width:100%;
+
+    padding:1rem 4rem;
+}
+section.main{
+
+    width:100%;
+}
+/* Section Spacing */
+
+hr{
+    margin-top:40px !important;
+    margin-bottom:40px !important;
+}
+/* Section Titles */
+
+h2{
+    margin-top:20px !important;
+    margin-bottom:20px !important;
+}
+/* Hide Streamlit */
+
+section[data-testid="stSidebar"]{
+    display:none;
+}
+
+button[title="Toggle sidebar"]{
+    display:none;
+}
+
+button[title="Open navigation menu"]{
+    display:none;
+}
+
+#MainMenu{
+    visibility:hidden;
+}
+
+footer{
+    visibility:hidden;
+}
+
+header{
+    visibility:hidden;
+}
+
+body{
+    font-family:Inter,system-ui,sans-serif;
+}
+
+/* Buttons */
+
+.stButton > button{
+
+    width:100%;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px 22px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .30s ease;
+
+    box-shadow:0 8px 18px rgba(37,99,235,.18);
+}
+
+.stButton > button{
+
+    transition:all .25s ease;
+}
+
+.stButton > button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(37,99,235,.30);
+}
+/* ==========================
+   PAGE COLORS
+========================== */
+
+html,
+body,
+.stApp,
+.main,
+[data-testid="stAppViewContainer"]{
+    background:#ffffff;
+    color:#111827;
+}
+
+[data-testid="stHeader"]{
+    background:#ffffff;
+}
+
+[data-testid="stToolbar"]{
+    background:#ffffff;
+}
+
+/* Headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    color:#111827 !important;
+}
+
+/* Normal Text */
+
+p,
+span,
+label,
+li,
+div{
+    color:#374151;
+}
+
+/* Streamlit Text */
+
+.stMarkdown,
+.stText,
+.stCaption{
+    color:#374151;
+}
+/* Card Animation */
+
+[data-testid="stVerticalBlockBorderWrapper"]{
+    transition:all .30s ease;
+    border-radius:18px;
+}
+
+[data-testid="stVerticalBlockBorderWrapper"]:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+}
+img{
+
+    border-radius:18px;
+}
+hr{
+
+    margin-top:60px;
+
+    margin-bottom:60px;
+}
+h2{
+
+    font-size:34px !important;
+
+    font-weight:700;
+}
+/* Containers */
+
+[data-testid="stVerticalBlock"]{
+    gap:1rem;
+}
