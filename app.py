@@ -21,6 +21,9 @@ ROOT = Path(__file__).resolve().parent
 
 with open(ROOT / "styles" / "landing.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# Navigation State
+if "page" not in st.session_state:
+    st.session_state.page = "home"
 
 # ==========================
 # MAIN
@@ -39,19 +42,27 @@ def main():
 
     with menu:
 
-        home, about, login, register = st.columns(4)
+        home, about, login,how, register = st.columns(5)
 
         with home:
-            st.button("Home", use_container_width=True)
+            if st.button("🏠 Home", key="home_btn", use_container_width=True):
+                st.session_state.page = "home"
 
         with about:
-            st.button("About", use_container_width=True)
+            if st.button("ℹ️ About", key="about_btn", use_container_width=True):
+                st.session_state.page = "about"
+
+        with how:
+            if st.button("⚙️ How It Works", key="how_btn", use_container_width=True):
+                st.session_state.page = "how"
 
         with login:
-            st.button("Login", use_container_width=True)
+           if st.button("Login", key="landing_login", use_container_width=True):
+            st.switch_page("pages/Login.py")
 
         with register:
-            st.button("Register", use_container_width=True)
+            if st.button("Register", key="landing_register", use_container_width=True):
+                st.switch_page("pages/Register.py")
 
     st.divider()
     st.markdown("<div style='height:20px;'></div>", unsafe_allow_html=True)

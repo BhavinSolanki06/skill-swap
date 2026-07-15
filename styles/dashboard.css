@@ -1,0 +1,177 @@
+/* ==========================================
+   GLOBAL
+========================================== */
+
+.block-container{
+    max-width:100% !important;
+    padding:1rem 4rem;
+}
+
+section[data-testid="stSidebar"]{
+    display:none;
+}
+
+button[title="Toggle sidebar"]{
+    display:none;
+}
+
+button[title="Open navigation menu"]{
+    display:none;
+}
+
+#MainMenu{
+    visibility:hidden;
+}
+
+footer{
+    visibility:hidden;
+}
+
+header{
+    visibility:hidden;
+}
+
+html,
+body,
+.stApp,
+.main,
+[data-testid="stAppViewContainer"]{
+    background:#ffffff;
+    color:#111827;
+    font-family:Inter,system-ui,sans-serif;
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+h1,h2,h3,h4,h5,h6{
+    color:#111827 !important;
+}
+
+p,
+span,
+label,
+li{
+    color:#4b5563;
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.stButton > button{
+
+    width:100%;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.18);
+}
+
+.stButton > button:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 28px rgba(37,99,235,.30);
+}
+
+/* ==========================================
+   INPUT BOX
+========================================== */
+
+.stTextInput input{
+
+    border-radius:12px !important;
+
+    border:1px solid #d1d5db !important;
+
+    padding:10px !important;
+}
+
+.stTextInput input:focus{
+
+    border-color:#2563eb !important;
+}
+
+/* ==========================================
+   CARDS
+========================================== */
+
+[data-testid="stVerticalBlockBorderWrapper"]{
+
+    border-radius:18px;
+
+    transition:.30s ease;
+
+    background:white;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+}
+
+[data-testid="stVerticalBlockBorderWrapper"]:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 16px 35px rgba(0,0,0,.10);
+}
+
+/* ==========================================
+   DIVIDER
+========================================== */
+
+hr{
+
+    margin-top:35px;
+
+    margin-bottom:35px;
+}
+
+/* ==========================================
+   ALERTS
+========================================== */
+
+[data-testid="stAlert"]{
+
+    border-radius:16px;
+}
+
+/* ==========================================
+   METRICS
+========================================== */
+
+[data-testid="metric-container"]{
+
+    border-radius:18px;
+
+    padding:18px;
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+}
+
+/* ==========================================
+   CONTAINERS
+========================================== */
+
+[data-testid="stVerticalBlock"]{
+
+    gap:1rem;
+}

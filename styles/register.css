@@ -1,0 +1,249 @@
+/* ==========================================
+   GLOBAL
+========================================== */
+
+.block-container{
+    max-width:100% !important;
+    padding:2rem 4rem;
+}
+
+section[data-testid="stSidebar"]{
+    display:none;
+}
+
+button[title="Toggle sidebar"]{
+    display:none;
+}
+
+button[title="Open navigation menu"]{
+    display:none;
+}
+
+#MainMenu{
+    visibility:hidden;
+}
+
+header{
+    visibility:hidden;
+}
+
+footer{
+    visibility:hidden;
+}
+
+html,
+body,
+.stApp{
+    background:#ffffff;
+    color:#111827;
+    font-family:Inter,system-ui,sans-serif;
+}
+
+/* ==========================================
+   COLUMN SPACING
+========================================== */
+
+[data-testid="column"]{
+    padding:20px;
+}
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+h1,h2,h3,h4,h5,h6{
+    color:#111827 !important;
+    font-weight:700;
+}
+
+p,
+span,
+label{
+    color:#4b5563;
+    line-height:1.7;
+}
+
+/* ==========================================
+   TEXT INPUT
+========================================== */
+
+.stTextInput input{
+
+    border:1px solid #d1d5db !important;
+
+    border-radius:12px !important;
+
+    padding:14px 16px !important;
+
+    transition:all .30s ease !important;
+
+    background:white;
+}
+
+.stTextInput input:hover{
+
+    border-color:#60a5fa !important;
+}
+
+.stTextInput input:focus{
+
+    border-color:#2563eb !important;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.15) !important;
+
+    transform:translateY(-1px);
+}
+
+/* ==========================================
+   CHECKBOX
+========================================== */
+
+.stCheckbox{
+
+    margin-top:12px;
+
+    margin-bottom:18px;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.stButton > button{
+
+    width:100%;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .30s ease;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.20);
+}
+
+.stButton > button:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 16px 35px rgba(37,99,235,.35);
+}
+
+.stButton > button:active{
+
+    transform:scale(.98);
+}
+
+/* ==========================================
+   SUCCESS BOX
+========================================== */
+
+[data-testid="stAlert"]{
+
+    border-radius:14px;
+
+    border:none;
+
+    transition:all .30s ease;
+}
+
+[data-testid="stAlert"]:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   HORIZONTAL LINE
+========================================== */
+
+hr{
+
+    margin-top:30px;
+
+    margin-bottom:30px;
+}
+
+/* ==========================================
+   LABELS
+========================================== */
+
+label{
+
+    font-weight:600 !important;
+}
+
+/* ==========================================
+   SPACING
+========================================== */
+
+.stTextInput{
+
+    margin-bottom:12px;
+}
+
+.stButton{
+
+    margin-top:10px;
+}
+
+.stCheckbox{
+
+    margin-top:15px;
+}
+
+/* ==========================================
+   SMOOTH ANIMATION
+========================================== */
+
+*{
+
+    transition:all .25s ease;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+.block-container{
+
+padding:1rem;
+
+}
+
+}
+/* ==========================================
+   FORCE INPUT TEXT COLOR
+========================================== */
+
+.stTextInput input {
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    background-color: #ffffff !important;
+}
+
+.stTextInput input::placeholder {
+    color: #9ca3af !important;
+}
+
+textarea {
+    color: #111827 !important;
+    background-color: #ffffff !important;
+}
