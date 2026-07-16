@@ -14,11 +14,11 @@ def connect_db():
 
             user="root",
 
-            password=".#RamJi.",
+            password="your password",
 
             database="skillswap",
 
-            port=5918
+            port=3306
 
         )
 
