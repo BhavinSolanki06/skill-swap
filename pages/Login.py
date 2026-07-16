@@ -1,5 +1,6 @@
 from pathlib import Path
 import streamlit as st
+from data.db import login_user
 
 # =====================================
 # PAGE CONFIG
@@ -89,12 +90,27 @@ def main():
         )
 
         if st.button(
-            "Login",
-            key="login_btn",
-            use_container_width=True
-        ):
-            st.switch_page("pages/Dashboard.py")
+    "🔑 Login",
+    use_container_width=True
+):
 
+            success, user = login_user(
+                email,
+                password
+            )
+
+            if success:
+
+                # Save logged-in user
+                st.session_state["user"] = user
+
+                st.success("Login Successful!")
+
+                st.switch_page("pages/Dashboard.py")
+
+            else:
+
+                st.error("Invalid Email or Password.")
         st.markdown("---")
 
         st.write("Don't have an account?")

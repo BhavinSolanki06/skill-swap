@@ -1,5 +1,6 @@
 from pathlib import Path
 import streamlit as st
+from data.db import insert_user
 
 # =====================================
 # PAGE CONFIG
@@ -7,7 +8,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Register",
-    page_icon="🤝",
+    page_icon="🚀",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -18,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # LOAD CSS
 # =====================================
 
-with open(ROOT / "styles" / "register.css") as f:
+with open(ROOT / "styles" / "login.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
@@ -31,26 +32,22 @@ def main():
     left, right = st.columns([1.2, 1])
 
     # =====================================
-    # LEFT HERO SECTION
+    # LEFT SECTION
     # =====================================
 
     with left:
 
-        st.markdown("# 🤝 Skill Swap")
+        st.title("🤝 Skill Swap")
 
         st.markdown("## Learn • Teach • Grow Together")
 
-        st.write(
-            """
-            Join thousands of learners and mentors.
+        st.write("""
+        Join thousands of learners and mentors.
 
-            Share your knowledge, learn new skills,
-            collaborate on real-world projects,
-            and grow your career with Skill Swap.
-            """
-        )
-
-        st.divider()
+        Share your knowledge, learn new skills,
+        collaborate on real-world projects,
+        and grow your career with Skill Swap.
+        """)
 
         st.success("🌍 1000+ Active Learners")
 
@@ -58,83 +55,119 @@ def main():
 
         st.success("📚 200+ Skills Available")
 
-        st.success("🚀 Start Your Learning Journey")
+        st.info("🚀 Start Your Learning Journey")
 
     # =====================================
-    # REGISTER CARD
+    # RIGHT SECTION
     # =====================================
 
     with right:
 
-        st.markdown("## 🚀 Create Your Account")
+        st.title("🚀 Create Your Account")
 
-        st.write(
+        st.caption(
             "Create an account to start learning and teaching."
         )
 
+        st.divider()
+
         full_name = st.text_input(
             "Full Name",
-            placeholder="Enter your full name",
-            key="fullname"
+            placeholder="Enter your full name"
         )
 
         username = st.text_input(
             "Username",
-            placeholder="Choose a username",
-            key="username"
+            placeholder="Choose a username"
         )
 
         email = st.text_input(
             "Email Address",
-            placeholder="Enter your email",
-            key="email"
+            placeholder="Enter your email"
         )
 
         password = st.text_input(
             "Password",
-            placeholder="Create a password",
             type="password",
-            key="password"
+            placeholder="Enter password"
         )
+
         confirm_password = st.text_input(
             "Confirm Password",
-            placeholder="Re-enter your password",
             type="password",
-            key="confirm_password"
+            placeholder="Confirm password"
+        )
+
+        location = st.text_input(
+            "Location",
+            placeholder="City, State"
         )
 
         skills_offer = st.text_input(
             "Skills You Can Teach",
-            placeholder="Example: Python, Java, Canva",
-            key="skills_offer"
+            placeholder="Python, Java, Canva..."
         )
 
         skills_learn = st.text_input(
             "Skills You Want to Learn",
-            placeholder="Example: AI, UI/UX, Video Editing",
-            key="skills_learn"
+            placeholder="AI, Spring Boot..."
         )
 
         agree = st.checkbox(
-            "I agree to the Terms & Conditions",
-            key="terms"
+            "I agree to the Terms & Conditions"
         )
+        st.divider()
+
+        # =====================================
+        # CREATE ACCOUNT BUTTON
+        # =====================================
+
         if st.button(
-            "Create Account",
-            key="register_btn",
+            "🚀 Create Account",
             use_container_width=True
         ):
-            st.switch_page("pages/Dashboard.py")
+
+            success, message = insert_user(
+
+                full_name=full_name,
+
+                username=username,
+
+                email=email,
+
+                password=password,
+
+                location=location,
+
+                skills_offer=skills_offer,
+
+                skills_learn=skills_learn
+
+            )
+
+            if success:
+
+                st.success(message)
+
+                st.balloons()
+
+                st.switch_page("pages/Login.py")
+
+            else:
+
+                st.error(message)
+
+        st.write("")
 
         st.markdown("---")
 
         st.write("Already have an account?")
 
         if st.button(
-            "Login",
-            key="login_btn",
+            "🔑 Login",
             use_container_width=True
         ):
+
             st.switch_page("pages/Login.py")
 
 

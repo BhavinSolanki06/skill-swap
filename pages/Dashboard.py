@@ -28,91 +28,109 @@ with open(ROOT / "styles" / "dashboard.css") as f:
 
 def main():
 
-    username = "Bhavin"
+    # ===============================
+    # LOGIN CHECK
+    # ===============================
 
-    # =====================================
+    if "user" not in st.session_state:
+
+        st.warning("Please login first.")
+
+        st.switch_page("pages/Login.py")
+
+    user = st.session_state["user"]
+
+    # ===============================
     # NAVBAR
-    # =====================================
+    # ===============================
 
-    logo, menu = st.columns([2, 4])
+    logo, menu = st.columns([2,4])
 
     with logo:
+
         st.title("🤝 Skill Swap")
 
     with menu:
 
         c1, c2, c3, c4, c5 = st.columns(5)
 
-    with c1:
-        if st.button(
-            "Dashboard",
-            key="nav_dashboard",
-            use_container_width=True
-        ):
-            st.switch_page("pages/Dashboard.py")
+        with c1:
 
-    with c2:
-        if st.button(
-            "Search",
-            key="nav_search",
-            use_container_width=True
-        ):
-            st.switch_page("pages/Search.py")
+            st.button(
+                "📊 Dashboard",
+                key="dashboard",
+                disabled=True,
+                use_container_width=True
+            )
 
-    with c3:
-        if st.button(
-            "Chat",
-            key="nav_chat",
-            use_container_width=True
-        ):
-            st.switch_page("pages/Chat.py")
+        with c2:
 
-    with c4:
-        if st.button(
-            "Profile",
-            key="nav_profile",
-            use_container_width=True
-        ):
-            st.switch_page("pages/Profile.py")
+            if st.button(
+                "🔍 Search",
+                key="search",
+                use_container_width=True
+            ):
+                st.switch_page("pages/Search.py")
 
-    with c5:
-        if st.button(
-            "Logout",
-            key="nav_logout",
-            use_container_width=True
-        ):
-            st.switch_page("app.py")
+        with c3:
+
+            st.button(
+                "💬 Chat",
+                key="chat",
+                use_container_width=True
+            )
+
+        with c4:
+
+            if st.button(
+                "👤 Profile",
+                key="profile",
+                use_container_width=True
+            ):
+                st.switch_page("pages/Profile.py")
+
+        with c5:
+
+            if st.button(
+                "🚪 Logout",
+                key="logout",
+                use_container_width=True
+            ):
+
+                st.session_state.clear()
+
+                st.switch_page("app.py")
 
     st.divider()
 
-    # =====================================
-    # WELCOME SECTION
-    # =====================================
+    # ===============================
+    # WELCOME
+    # ===============================
 
-    st.markdown(f"## 👋 Welcome Back, {username}!")
-
-    st.write(
-        """
-        Continue your learning journey, connect with talented people,
-        exchange skills and build amazing projects together.
-        """
+    st.markdown(
+        f"## 👋 Welcome Back, {user['full_name']}!"
     )
+
+    st.write("""
+Continue your learning journey, connect with talented people,
+exchange skills and build amazing projects together.
+""")
 
     st.info(
-        "💡 Tip of the Day: Learn one new skill and teach one skill today!"
+        "💡 Tip of the Day: Learn one new skill every day."
     )
 
     st.divider()
 
-    # =====================================
+    # ===============================
     # DASHBOARD OVERVIEW
-    # =====================================
+    # ===============================
 
-    st.markdown("## 📊 Dashboard Overview")
+    skills = len(user["skills_offer"].split(","))
 
-    col1, col2, col3, col4 = st.columns(4)
+    c1, c2, c3, c4 = st.columns(4)
 
-    with col1:
+    with c1:
 
         with st.container(border=True):
 
@@ -120,11 +138,11 @@ def main():
 
             st.subheader("Skills")
 
-            st.markdown("## 5")
+            st.markdown(f"### {skills}")
 
             st.caption("Skills You Offer")
 
-    with col2:
+    with c2:
 
         with st.container(border=True):
 
@@ -132,11 +150,11 @@ def main():
 
             st.subheader("Connections")
 
-            st.markdown("## 12")
+            st.markdown("### 0")
 
             st.caption("Learning Partners")
 
-    with col3:
+    with c3:
 
         with st.container(border=True):
 
@@ -144,11 +162,11 @@ def main():
 
             st.subheader("Chats")
 
-            st.markdown("## 4")
+            st.markdown("### 0")
 
             st.caption("Active Conversations")
 
-    with col4:
+    with c4:
 
         with st.container(border=True):
 
@@ -156,7 +174,7 @@ def main():
 
             st.subheader("Rating")
 
-            st.markdown("## 4.9")
+            st.markdown(f"### {user['rating']}")
 
             st.caption("Community Rating")
 
@@ -168,27 +186,29 @@ def main():
     st.markdown("## 🔍 Find Skills")
 
     st.write(
-        "Search for a skill and discover people who are ready to teach or learn with you."
+        "Search for developers, designers and other learners."
     )
 
     search = st.text_input(
         "Search Skills",
-        placeholder="Python, Java, UI/UX, Canva...",
-        key="search_input"
+        placeholder="Python, Java, AI, Canva..."
     )
 
-    btn1, btn2 = st.columns([1, 5])
+    b1, b2 = st.columns([1,5])
 
-    with btn1:
-        st.button(
+    with b1:
+
+        if st.button(
             "Search",
             key="search_button",
             use_container_width=True
-        )
+        ):
+            st.switch_page("pages/Search.py")
 
-    with btn2:
+    with b2:
+
         st.caption(
-            "🔥 Popular Skills: Python • Java • Figma • SQL • AI • Public Speaking"
+            "🔥 Popular Skills: Python • Java • AI • Spring Boot • SQL • Canva"
         )
 
     st.divider()
@@ -202,116 +222,64 @@ def main():
     users = [
 
         {
-            "name": "Priya Shah",
-            "role": "Graphic Designer",
-            "skills": "Canva • Photoshop • Figma",
-            "location": "Ahmedabad",
-            "rating": "4.9 ⭐"
+            "name":"Rahul Patel",
+            "role":"Java Backend Developer",
+            "skills":"Java • Spring Boot • MySQL",
+            "location":"Surat",
+            "rating":"4.9 ⭐"
         },
 
         {
-            "name": "Rahul Patel",
-            "role": "Java Developer",
-            "skills": "Java • Spring Boot • MySQL",
-            "location": "Surat",
-            "rating": "4.8 ⭐"
+            "name":"Priya Shah",
+            "role":"Graphic Designer",
+            "skills":"Canva • Photoshop • Figma",
+            "location":"Ahmedabad",
+            "rating":"4.8 ⭐"
         },
 
         {
-            "name": "Neha Patel",
-            "role": "Python Developer",
-            "skills": "Python • Streamlit • AI",
-            "location": "Vadodara",
-            "rating": "5.0 ⭐"
+            "name":"Neha Patel",
+            "role":"Python Developer",
+            "skills":"Python • AI • Streamlit",
+            "location":"Vadodara",
+            "rating":"5.0 ⭐"
         }
 
     ]
 
-    for user in users:
+    for person in users:
 
         with st.container(border=True):
 
-            left, right = st.columns([5, 1])
+            left, right = st.columns([5,1])
 
             with left:
 
-                st.subheader(f"👤 {user['name']}")
+                st.subheader(f"👤 {person['name']}")
 
-                st.write(f"**💼 {user['role']}**")
+                st.write(f"💼 **{person['role']}**")
 
-                st.write(f"🛠️ {user['skills']}")
+                st.write(f"🛠️ {person['skills']}")
 
-                st.write(f"📍 {user['location']}")
+                st.write(f"📍 {person['location']}")
 
-                st.write(f"⭐ {user['rating']}")
+                st.write(f"⭐ {person['rating']}")
 
             with right:
 
                 st.button(
                     "Connect",
-                    key=f"connect_{user['name']}",
+                    key=f"connect_{person['name']}",
                     use_container_width=True
                 )
 
     st.divider()
 
-    # =====================================
-    # RECENT ACTIVITY
-    # =====================================
-
-    st.markdown("## 📅 Recent Activity")
-
-    with st.container(border=True):
-
-        st.success("✅ Connected with Rahul Patel")
-
-        st.success("✅ Accepted Skill Swap Request")
-
-        st.info("📚 Completed Java Learning Session")
-
-        st.info("💬 Started a new conversation with Priya Shah")
-
-    st.divider()
-
-    # =====================================
-    # QUICK ACTIONS
-    # =====================================
-
-    st.markdown("## ⚡ Quick Actions")
-
-    q1, q2, q3, q4 = st.columns(4)
-
-    with q1:
-        st.button(
-            "➕ Add Skill",
-            key="quick_add_skill",
-            use_container_width=True
-        )
-
-    with q2:
-        st.button(
-            "🔍 Find Partner",
-            key="quick_find_partner",
-            use_container_width=True
-        )
-
-    with q3:
-        st.button(
-            "💬 Open Chats",
-            key="quick_open_chat",
-            use_container_width=True
-        )
-
-    with q4:
-        st.button(
-            "👤 My Profile",
-            key="quick_profile",
-            use_container_width=True
-        )
+    st.caption("© 2026 Skill Swap | Learn • Teach • Grow Together")
 
 
 # =====================================
-# RUN APPLICATION
+# RUN APP
 # =====================================
 
 if __name__ == "__main__":
